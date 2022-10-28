@@ -1,0 +1,224 @@
+﻿<Window x:Class="Architektura_systemu.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Architektura_systemu"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="570" Width="1200" ResizeMode="NoResize">
+    <Window.Resources>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#373737" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="Background" Value="Black"></Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"></Setter>
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="Black"></Setter>
+        </Style>
+        <Style TargetType="CheckBox" x:Key="CircleCheckbox">
+            <Setter Property="Cursor" Value="Hand"></Setter>
+            <Setter Property="Content" Value=""></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                <ColumnDefinition ></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="black" BorderThickness="1" CornerRadius="0" Width="25" Height="25" VerticalAlignment="Center"  >
+                                <Grid>
+                                    <Ellipse x:Name="outerEllipse" Grid.Column="0" Fill="White" Margin="2">
+                                    </Ellipse>
+                                </Grid>
+                            </Border>
+                            <ContentPresenter Grid.Column="1" x:Name="content" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="outerEllipse" Property="Fill" Value="#FFD8F089">
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="outerEllipse" Property="Fill" Value="white">
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border Padding="10" >
+
+        <StackPanel>
+            <Grid Height="510">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+
+                </Grid.RowDefinitions>
+
+                <TextBlock Background="#FFD8F089" TextAlignment="Center" Margin="8 0 1 0" FontSize="18" Text="AX"  Grid.Column="0" Grid.Row="0" FontWeight="Bold"></TextBlock>
+                <TextBlock Background="#FFD8F089" TextAlignment="Center" Margin="8 10 1 0" FontSize="18" Text="BX"  Grid.Column="0" Grid.Row="1" FontWeight="Bold"></TextBlock>
+                <TextBlock Background="#FFD8F089" TextAlignment="Center" Margin="8 10 1 0" FontSize="18" Text="CX"  Grid.Column="0" Grid.Row="2" FontWeight="Bold"></TextBlock>
+                <TextBlock Background="#FFD8F089" TextAlignment="Center" Margin="8 10 1 0" FontSize="18" Text="DX"  Grid.Column="0" Grid.Row="3" FontWeight="Bold"></TextBlock>
+                <TextBlock x:Name="output_ax" Margin="2 0 0 0" FontSize="20" TextAlignment="Center" Background="Gray" Text="0000" Grid.Column="1" Grid.Row="0"></TextBlock>
+                <TextBlock x:Name="output_bx" Margin="2 10 0 0" FontSize="20" TextAlignment="Center" Background="Gray" Text="0000" Grid.Column="1" Grid.Row="1"></TextBlock>
+                <TextBlock x:Name="output_cx" Margin="2 10 0 0" FontSize="20" TextAlignment="Center" Background="Gray" Text="0000" Grid.Column="1" Grid.Row="2"></TextBlock>
+                <TextBlock x:Name="output_dx" Margin="2 10 0 0" FontSize="20" TextAlignment="Center" Background="Gray" Text="0000" Grid.Column="1" Grid.Row="3"/>
+
+
+                <TextBlock Background="#FFD8F089" TextAlignment="Center" Margin="0 0 0 0" FontSize="18" Text="SI"  Grid.Column="6" Grid.Row="0" FontWeight="Bold"></TextBlock>
+                <TextBlock Background="#FFD8F089" TextAlignment="Center" Margin="0 10 0 0" FontSize="18" Text="DI"  Grid.Column="6" Grid.Row="1" FontWeight="Bold"></TextBlock>
+                <TextBlock Background="#FFD8F089" TextAlignment="Center" Margin="0 10 0 0" FontSize="18" Text="BP"  Grid.Column="6" Grid.Row="2" FontWeight="Bold"></TextBlock>
+                <TextBlock Background="#FFD8F089" TextAlignment="Center" Margin="0 10 0 0" FontSize="18" Text="SP"  Grid.Column="6" Grid.Row="3" FontWeight="Bold"></TextBlock>
+
+                <TextBox MaxLength="4" KeyDown="Input_ax_KeyDown" x:Name="input_ax" BorderBrush="Black" Grid.Row="0" Grid.Column="2" Margin="8 0 0 0"></TextBox>
+                <TextBox MaxLength="4" KeyDown="Input_bx_KeyDown" x:Name="input_bx" BorderBrush="Black" Grid.Row="1" Grid.Column="2" Margin="8 10 0 0"></TextBox>
+                <TextBox MaxLength="4" KeyDown="Input_cx_KeyDown" x:Name="input_cx" BorderBrush="Black" Grid.Row="2" Grid.Column="2" Margin="8 10 0 0"></TextBox>
+                <TextBox MaxLength="4" KeyDown="Input_dx_KeyDown" x:Name="input_dx" BorderBrush="Black" Grid.Row="3" Grid.Column="2" Margin="8 10 0 0"></TextBox>
+
+
+                <TextBlock x:Name="si_output" Margin="2 0 0 0" FontSize="20" TextAlignment="Center" Background="Gray" Text="0000" Grid.Column="7" Grid.Row="0"></TextBlock>
+                <TextBlock x:Name="di_output" Margin="2 10 0 0" FontSize="20" TextAlignment="Center" Background="Gray" Text="0000" Grid.Column="7" Grid.Row="1"></TextBlock>
+                <TextBlock x:Name="bp_output" Margin="2 10 0 0" FontSize="20" TextAlignment="Center" Background="Gray" Text="0000" Grid.Column="7" Grid.Row="2"></TextBlock>
+                <TextBlock x:Name="sp_output" Margin="2 10 0 0" FontSize="20" TextAlignment="Center" Background="Gray" Text="0000" Grid.Column="7" Grid.Row="3"/>
+
+                <TextBox MaxLength="4" KeyDown="Input_si_KeyDown" x:Name="input_si" BorderBrush="Black" Grid.Row="0" Grid.Column="8" Margin="8 0 0 0"></TextBox>
+                <TextBox MaxLength="4" KeyDown="Input_di_KeyDown" x:Name="input_di" BorderBrush="Black" Grid.Row="1" Grid.Column="8" Margin="8 10 0 0"></TextBox>
+                <TextBox MaxLength="4" KeyDown="Input_bp_KeyDown" x:Name="input_bp" BorderBrush="Black" Grid.Row="2" Grid.Column="8" Margin="8 10 0 0"></TextBox>
+                <TextBox IsEnabled="False" x:Name="input_sp" BorderBrush="Black" Grid.Row="3" Grid.Column="8" Margin="8 10 0 0"></TextBox>
+
+
+                <Button Click="Button_Click_zero" Margin="4 10 0 2"  Content="Zerowanie" Grid.Column="2" Grid.Row="4" FontWeight="Bold" FontSize="14" ></Button>
+                <Button Click="Button_Click"  Margin="4 10 4 2"  Content="Random" Grid.Column="1" Grid.Row="4" FontSize="14" FontWeight="Bold" ></Button>
+                <Button Margin="4 10 0 2"  Content="Zerowanie" Grid.Column="8" Grid.Row="4" FontWeight="Bold" FontSize="14"></Button>
+
+                <CheckBox Checked="CheckBox_change_1" x:Name="mov_box"  Content="MOV" HorizontalAlignment="Center" Grid.Row="6" Grid.Column="0" Style="{DynamicResource CircleCheckbox}"   FontWeight="Bold" FontSize="14" ></CheckBox>
+                <CheckBox Checked="CheckBox_change_1" x:Name="xchg_box" Content="XCHG" HorizontalAlignment="Center" Grid.Row="6" Grid.Column="1" Style="{DynamicResource CircleCheckbox}"  FontWeight="Bold" FontSize="14"></CheckBox>
+                <StackPanel Grid.Row="7" Grid.RowSpan="6" >
+                    <Button Click="Button_Click_mov_xchg" Margin="4 3 4 0" Grid.Column="0" Height="32" Content="AX, BX" FontSize="16" ></Button>
+                    <Button Click="Button_Click_mov_xchg" Margin="4 10 4 0" Grid.Column="0" Height="32" Content="AX, CX" FontSize="16"></Button>
+                    <Button Click="Button_Click_mov_xchg" Margin="4 10 4 0" Grid.Column="0" Height="32" Content="AX, DX" FontSize="16"></Button>
+                    <Button Click="Button_Click_mov_xchg" Margin="4 10 4 0" Grid.Column="0" Height="32" Content="BX, AX" FontSize="16"></Button>
+                    <Button Click="Button_Click_mov_xchg" Margin="4 10 4 0" Grid.Column="0" Height="32" Content="BX, CX" FontSize="16"></Button>
+                    <Button Click="Button_Click_mov_xchg" Margin="4 10 4 0" Grid.Column="0" Height="32" Content="BX, DX" FontSize="16"></Button>
+                </StackPanel>
+                <StackPanel Grid.Row="7" Grid.RowSpan="6" Grid.Column="1">
+                    <Button Click="Button_Click_mov_xchg" Margin="4 3 4 0" Grid.Column="1" Height="32" Content="CX, AX" FontSize="16"></Button>
+                    <Button Click="Button_Click_mov_xchg" Margin="4 10 4 0" Grid.Column="1" Height="32" Content="CX, BX" FontSize="16"></Button>
+                    <Button Click="Button_Click_mov_xchg" Margin="4 10 4 0" Grid.Column="1" Height="32" Content="CX, DX" FontSize="16"></Button>
+                    <Button Click="Button_Click_mov_xchg" Margin="4 10 4 0" Grid.Column="1" Height="32" Content="DX, AX" FontSize="16"></Button>
+                    <Button Click="Button_Click_mov_xchg" Margin="4 10 4 0" Grid.Column="1" Height="32" Content="DX, BX" FontSize="16"></Button>
+                    <Button Click="Button_Click_mov_xchg" Margin="4 10 4 0" Grid.Column="1" Height="32" Content="DX, CX" FontSize="16"></Button>
+                </StackPanel>
+                <Border BorderThickness="2" BorderBrush="White" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="7" Margin="10 2 10 0" x:Name="border_reg">
+                    <StackPanel Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="6" HorizontalAlignment="Center">
+                        <CheckBox  Checked="CheckBox_Checked_1" x:Name="reg_to_memory"  FontSize="24" Content="Z rejestru do pamieci" VerticalContentAlignment="Center" Style="{DynamicResource CircleCheckbox}" Foreground="White"></CheckBox>
+                        <CheckBox Checked="CheckBox_Checked_2" x:Name="memory_to_reg" Margin="0 10 0 0" FontSize="24" Content="Z pamieci do rejestru" Background="White" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                        <CheckBox Unchecked="Index_Unchecked" Loaded="CheckBox_Checked_3" Checked="CheckBox_Checked_3" x:Name="index" Margin="0 20 0 0" FontSize="22" Content="Indeksowy" VerticalContentAlignment="Center" Style="{DynamicResource CircleCheckbox}" ></CheckBox>
+                        <CheckBox Unchecked="Index_Unchecked" Checked="CheckBox_Checked_4" x:Name="based" FontSize="22" Content="Bazowy" VerticalContentAlignment="Center" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                        <CheckBox Unchecked="Index_Unchecked" Checked="CheckBox_Checked_5" x:Name="index_based" FontSize="22" Content="Bazowo-indeksowy" VerticalContentAlignment="Center" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+
+                    </StackPanel>
+
+                </Border>
+                <Border BorderThickness="2" BorderBrush="White" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="10 0 50 25" x:Name="border_index_">
+                    <StackPanel Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" x:Name="index_" Visibility="Visible" HorizontalAlignment="Center">
+                        <CheckBox Checked="CheckBox_Checked_6" VerticalContentAlignment="Center" FontSize="25" Content="SI" x:Name="si_" Margin="0 0 10 0" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                        <CheckBox Checked="CheckBox_Checked_7" VerticalContentAlignment="Center" FontSize="25" Content="DI" x:Name="di_" Margin="0 0 10 0" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                    </StackPanel>
+                </Border>
+                <Border BorderThickness="2" BorderBrush="White" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="10 0 50 25" Visibility="Hidden" x:Name="border_base_">
+                    <StackPanel Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.RowSpan="2" x:Name="base_" Visibility="Hidden">
+                        <CheckBox Checked="CheckBox_Checked_8" VerticalContentAlignment="Center" FontSize="25" Content="BX" x:Name="bx_" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                        <CheckBox Checked="CheckBox_Checked_9" VerticalContentAlignment="Center" FontSize="25" Content="BP" x:Name="bp_" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                    </StackPanel>
+                </Border>
+                <Border BorderThickness="2" BorderBrush="White" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="5" Margin="10 0 50 25" Visibility="Hidden" x:Name="border_index_base_">
+                    <StackPanel Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.RowSpan="4" x:Name="index_base_" Visibility="Hidden" >
+                        <CheckBox x:Name="sibx_mem" Checked="CheckBox_Checked_10" VerticalContentAlignment="Center" FontSize="25" Content="SI i BX" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                        <CheckBox x:Name="dibx_mem" Checked="CheckBox_Checked_11" VerticalContentAlignment="Center" FontSize="25" Content="DI i BX" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                        <CheckBox x:Name="sibp_mem" Checked="CheckBox_Checked_12" VerticalContentAlignment="Center" FontSize="25" Content="SI i BP" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                        <CheckBox x:Name="dibp_mem" Checked="CheckBox_Checked_13" VerticalContentAlignment="Center" FontSize="25" Content="DI i BP" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                    </StackPanel>
+                </Border>
+                <Border BorderThickness="2" BorderBrush="White" Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="5" Margin="70 0 10 25" x:Name="border_alway">
+                    <StackPanel Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="4" x:Name="alway" HorizontalAlignment="Center" >
+                        <CheckBox x:Name="ax_mem" Checked="CheckBox_Checked_14" VerticalContentAlignment="Center" FontSize="25" Content="AX" Margin="0 0 10 0" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                        <CheckBox x:Name="bx_mem" Checked="CheckBox_Checked_15" VerticalContentAlignment="Center" FontSize="25" Content="BX" Margin="0 0 10 0" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                        <CheckBox x:Name="cx_mem" Checked="CheckBox_Checked_16" VerticalContentAlignment="Center" FontSize="25" Content="CX" Margin="0 0 10 0" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                        <CheckBox x:Name="dx_mem" Checked="CheckBox_Checked_17" VerticalContentAlignment="Center" FontSize="25" Content="DX" Margin="0 0 10 0" Style="{DynamicResource CircleCheckbox}"></CheckBox>
+                    </StackPanel>
+                </Border>
+                <StackPanel  Grid.Row="6" Grid.Column="7" Grid.RowSpan="3">
+                    <TextBlock TextAlignment="Center" Background="#FFD8F089" FontSize="20" Text="DISP" Margin="0 7 0 0" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="disp_output" Margin="0 10 0 0" FontSize="20" TextAlignment="Center" Background="Gray" Text="0000" />
+                    <Button Click="Mov_mem_Click" x:Name="mov_mem" Margin="2 10 4 0" Height="30" Content="MOV" FontSize="14" FontWeight="Bold"></Button>
+                </StackPanel>
+                <StackPanel Grid.Row="7" Grid.Column="8" Grid.RowSpan="2">
+                    <TextBox KeyDown="Input_disp_KeyDown" Height="24" MaxLength="4" x:Name="input_disp" BorderBrush="Black" Margin="8 4 0 0"></TextBox>
+                    <Button Click="Xchg_mem_Click" x:Name="xchg_mem" Margin="4 10 2 0" Height="30" Content="XCHG" FontWeight="Bold" FontSize="14"></Button>
+                </StackPanel>
+                <StackPanel Grid.Row="9" Grid.RowSpan="4" Grid.Column="7">
+                    <Button Click="Push_ax_Click" x:Name="push_ax" Content="Push AX"  Height="34" Margin="0 6 4 0" FontSize="16"></Button>
+                    <Button Click="push_bx_Click" x:Name="push_bx" Content="Push BX"  Height="34" Margin="0 6 4 0" FontSize="16"></Button>
+                    <Button Click="push_cx_Click" x:Name="push_cx" Content="Push CX"  Height="34" Margin="0 6 4 0" FontSize="16"></Button>
+                    <Button Click="push_dx_Click" x:Name="push_dx" Content="Push DX"  Height="34" Margin="0 6 4 0" FontSize="16"></Button>
+                </StackPanel>
+                <StackPanel Grid.Row="9" Grid.RowSpan="4" Grid.Column="8">
+                    <Button Click="pop_ax_Click" x:Name="pop_ax" Content="Pop AX"  Height="34" Margin="4 6 0 0" FontSize="16" ></Button>
+                    <Button Click="pop_bx_Click" x:Name="pop_bx" Content="Pop BX"  Height="34" Margin="4 6 0 0" FontSize="16"></Button>
+                    <Button Click="pop_cx_Click" x:Name="pop_cx" Content="Pop CX"  Height="34" Margin="4 6 0 0" FontSize="16"></Button>
+                    <Button Click="pop_dx_Click" x:Name="pop_dx" Content="Pop DX"  Height="34" Margin="4 6 0 0" FontSize="16"></Button>
+                </StackPanel>
+                <Border BorderThickness="2" BorderBrush="White" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="5" Margin="0 5 0 1" >
+                    <TextBox IsEnabled="False" Background="Gray" Grid.Column="3" Grid.Row="12" Grid.ColumnSpan="3" Text="/>" FontSize="20" x:Name="info_bar"></TextBox>
+                </Border>
+
+            </Grid>
+
+        </StackPanel>
+    </Border>
+
+</Window>
